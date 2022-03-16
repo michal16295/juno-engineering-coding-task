@@ -4,7 +4,7 @@ import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
-import { fetchImages } from "../../api/index";
+import { fetchImages, fetchImageUrls } from "../../api/index";
 
 import ImageItem from "../components/ImageItem";
 import constants from "../constants/carousel";
@@ -40,6 +40,7 @@ const ImageCarousel = (props) => {
             <Icon>
               <BsArrowLeftCircleFill size={40} onClick={handlePrev} />
             </Icon>
+
             <ImageContainer>
               <ImageItem
                 url={data[getIndex(constants.LEFT)]}
