@@ -10,7 +10,7 @@ const fetchAllOrders = () => {
   return Promise.all(ids.map((id) => fetchOrderById(id)));
 };
 
-export const bucketOrdersByUsers = async () => {
+const bucketOrdersByUsers = async () => {
   let ordersByUsers = {};
   //   2. TODO: using the function from section 1 you should now bucket the orders by user.
   // each key in the object (ordersByUsers) represents a userId and each value is an array of the orders of that user.
@@ -43,7 +43,7 @@ const getLast2WeeksOrders = async () => {
   return res;
 };
 
-export const bucketOrdersByDate = async () => {
+const bucketOrdersByDate = async () => {
   let ordersByDate = {};
   //   4. TODO: using the function from section 3 bucket the orders by date.
   // each key in the object (ordersByDate) represents a day and each value is an array of the orders in that date.

@@ -12,7 +12,7 @@ import constants from "../constants/carousel";
 const ImageCarousel = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const { isLoading, error, data } = useQuery("imagesData", fetchImages);
+  const { isLoading, error, data } = useQuery("imagesData", fetchImageUrls);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % data.length);
@@ -43,6 +43,7 @@ const ImageCarousel = (props) => {
 
             <ImageContainer>
               <ImageItem
+                key={getIndex(constants.LEFT)}
                 url={data[getIndex(constants.LEFT)]}
                 direction={constants.LEFT_ROTATIONS}
               />
@@ -59,6 +60,7 @@ const ImageCarousel = (props) => {
             <ImageContainer>
               <ImageItem
                 url={data[getIndex()]}
+                key={getIndex()}
                 direction={constants.RIGHT_ROTATION}
               />
             </ImageContainer>
