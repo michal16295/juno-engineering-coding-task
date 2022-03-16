@@ -1,12 +1,20 @@
-import logo from '../logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
 import ImageCarousel from "./ImageCarousel";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-      <div>
-        <ImageCarousel />
-      </div>
+    <QueryClientProvider client={queryClient}>
+      <ImageCarousel />
+    </QueryClientProvider>
   );
 }
 
