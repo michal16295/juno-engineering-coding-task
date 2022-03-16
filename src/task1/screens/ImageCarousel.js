@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
+import CircularProgress from "@mui/material/CircularProgress";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import { fetchImageUrls } from "../../api/index";
 
 import ImageItem from "../components/ImageItem";
 
 const ImageCarousel = (props) => {
-  const [currentIndex, setCurrentIndex] = useState();
-  const { isLoading, error, data } = useQuery("imagesData", fetchImageUrls, {
-    onSuccess: (data) => setCurrentIndex(Math.floor(data.length / 2)),
-  });
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { isLoading, error, data } = useQuery("imagesData", fetchImageUrls);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % data.length);
@@ -20,30 +20,36 @@ const ImageCarousel = (props) => {
     setCurrentIndex((prev) => (data.length + prev - 1) % data.length);
   };
 
-  if (isLoading) return "Loading...";
-
   if (error) return "An error has occurred: " + error.message;
 
   return (
     <Container>
-      <Row>
-        <BsArrowLeftCircleFill
-          size={40}
-          onClick={handlePrev}
-          style={{ cursor: "pointer" }}
-        />
-        <ImageContainer>
-          <ImageItem url={data[currentIndex]} />
-        </ImageContainer>
-        <BsArrowRightCircleFill
-          size={40}
-          onClick={handleNext}
-          style={{ cursor: "pointer" }}
-        />
-      </Row>
-      <div>
-        {currentIndex + 1} / {data.length}
-      </div>
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <Row>
+            <BsArrowLeftCircleFill
+              size={40}
+              onClick={handlePrev}
+              style={{ cursor: "pointer" }}
+            />
+
+            <ImageContainer>
+              <ImageItem url={data[currentIndex]} />
+            </ImageContainer>
+
+            <BsArrowRightCircleFill
+              size={40}
+              onClick={handleNext}
+              style={{ cursor: "pointer" }}
+            />
+          </Row>
+          <h3>
+            {currentIndex + 1} / {data.length}
+          </h3>
+        </>
+      )}
     </Container>
   );
 };
