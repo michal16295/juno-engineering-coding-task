@@ -1,6 +1,5 @@
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { bucketOrdersByDate } from "../task2/ecommerce";
 import ImageCarousel from "./screens/ImageCarousel";
 
 const queryClient = new QueryClient();
