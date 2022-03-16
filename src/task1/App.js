@@ -1,12 +1,6 @@
 import "./App.css";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
-import ImageCarousel from "./ImageCarousel";
+import { QueryClient, QueryClientProvider } from "react-query";
+import ImageCarousel from "./screens/ImageCarousel";
 
 const queryClient = new QueryClient();
 
